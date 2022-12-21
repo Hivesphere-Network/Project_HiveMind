@@ -2,3 +2,7 @@
 /.vs/
 /.idea/
 /DCP-Agent/x64/
+Project_HiveMind.sln
+BaseAgent/BaseAgent.vcxproj
+BaseAgent/BaseAgent.vcxproj.filters
+BaseAgent/BaseAgent.vcxproj.user
