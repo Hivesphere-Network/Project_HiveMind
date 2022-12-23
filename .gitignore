@@ -2,6 +2,10 @@
 /.vs/
 /.idea/
 /BaseAgent/x64/
+/BaseAgent/.vs/
+/BaseAgent/.idea/
+/BaseAgent/bin/
+/BaseAgent/obj/
 *.sln
 *.vcxproj
 *.vcxproj.filters
