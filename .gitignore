@@ -1,4 +1,12 @@
 ﻿/x64/
 /.vs/
 /.idea/
-/DCP-Agent/x64/
+/BaseAgent/x64/
+/BaseAgent/.vs/
+/BaseAgent/.idea/
+/BaseAgent/bin/
+/BaseAgent/obj/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
