@@ -17,11 +17,11 @@ public:
 	Worker(const Worker&);
 	~Worker();
 	bool run();
-	bool stop();
-	bool is_running();
+	void stop();
+	bool is_running() const;
 
 private:
-	bool run_func();
-	bool abort_and_join();
+	void run_func();
+	void abort_and_join();
 	
 };
