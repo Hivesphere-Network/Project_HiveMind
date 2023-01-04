@@ -6,7 +6,7 @@
 #include <memory>
 #include <stdexcept>
 
-class Worker
+class HM_Worker
 {
 private:
 	std::thread m_thread;
@@ -14,8 +14,8 @@ private:
 	std::atomic_bool m_abort_requested;
 
 public:
-	Worker(const Worker&);
-	~Worker();
+	HM_Worker(const HM_Worker&);
+	~HM_Worker();
 	bool run();
 	void stop();
 	bool is_running() const;

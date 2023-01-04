@@ -1,7 +1,8 @@
 ﻿#pragma once
 
-class Logging
+class HM_Logger
 {
 public:
+	
 	
 };

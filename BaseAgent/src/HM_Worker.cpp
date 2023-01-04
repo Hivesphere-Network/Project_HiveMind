@@ -1,20 +1,20 @@
-﻿#include "Worker.h"
+﻿#include "HM_Worker.h"
 
-Worker::Worker(const Worker&)
+HM_Worker::HM_Worker(const HM_Worker&)
 {
 	
 }
 
-Worker::~Worker()
+HM_Worker::~HM_Worker()
 {
 	this->abort_and_join();
 }
 
-bool Worker::run()
+bool HM_Worker::run()
 {
 	try
 	{
-		m_thread = std::thread(&Worker::run_func, this);
+		m_thread = std::thread(&HM_Worker::run_func, this);
 	}
 	catch(...)
 	{
@@ -23,17 +23,17 @@ bool Worker::run()
 	return true;
 }
 
-void Worker::stop()
+void HM_Worker::stop()
 {
 	this->abort_and_join();
 }
 
-bool Worker::is_running() const
+bool HM_Worker::is_running() const
 {
 	return m_running.load();
 }	
 
-void Worker::run_func()
+void HM_Worker::run_func()
 {
 	m_running.store(true);
 
@@ -55,7 +55,7 @@ void Worker::run_func()
 	m_running.store(false);
 }
 
-void Worker::abort_and_join()
+void HM_Worker::abort_and_join()
 {
 	m_abort_requested.store(true);
 	if(m_thread.joinable())
