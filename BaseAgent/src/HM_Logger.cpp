@@ -21,3 +21,9 @@ void HM_Logger::debug(const std::string& log_string)
 {
 	m_log_queue.append("[DEBUG] " + log_string + "\n");
 }
+
+void HM_Logger::write_log() const
+{
+	m_file->append(m_log_queue);
+}
+
