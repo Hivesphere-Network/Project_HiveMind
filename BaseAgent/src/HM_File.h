@@ -5,10 +5,14 @@ class HM_File
 {
 private:
 	std::fstream m_file;
+
 public:
 	HM_File(const char* path, const int mode);
-	bool close();
-	void append();
-	void read();
-	void write();
+	~HM_File();
+	void append(const std::string& str);
+	std::string read();
+	void write(const std::string& context);
+
+private:
+	void close();
 };
