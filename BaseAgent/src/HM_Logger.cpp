@@ -9,6 +9,7 @@ HM_Logger::HM_Logger()
 
 HM_Logger::~HM_Logger()
 {
+	write_log();
 	delete m_file;
 }
 
