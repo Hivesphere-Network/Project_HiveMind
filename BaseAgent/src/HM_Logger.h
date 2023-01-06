@@ -31,5 +31,6 @@ public:
 
 private:
 	void write_log() const;
+	static std::string get_time();
 };
 
