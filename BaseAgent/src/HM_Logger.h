@@ -1,8 +1,6 @@
 ﻿#pragma once
 
-#include <ctime>
 #include <string>
-
 #include "HM_File.h"
 
 enum class LOG_LEVEL

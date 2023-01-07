@@ -40,9 +40,6 @@ void HM_Logger::error(const std::string& log_string)
 	m_log_queue.append(log);
 }
 
-
-
-
 void HM_Logger::debug(const std::string& log_string)
 {
 	const std::string log = "[" + get_time() + "] [DEBUG] " + log_string + "\n";
