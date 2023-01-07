@@ -28,6 +28,8 @@ public:
 
 	void info(const std::string& log_string);
 	void debug(const std::string& log_string);
+	void warn(const std::string& log_string);
+	void error(const std::string& log_string);
 
 private:
 	void write_log() const;
