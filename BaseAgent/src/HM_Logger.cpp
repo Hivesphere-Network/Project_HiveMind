@@ -9,6 +9,13 @@ HM_Logger::HM_Logger()
 	m_log_level = LOG_LEVEL::LOG_LEVEL_INFO;
 }
 
+HM_Logger::HM_Logger(const LOG_LEVEL log_level,const std::string& log_file)
+{
+	m_log_file = log_file;
+	m_file = new HM_File(m_log_file.c_str(), std::ios::in | std::ios::out | std::ios::app);
+	m_log_level = log_level;
+}
+
 HM_Logger::~HM_Logger()
 {
 	write_log();

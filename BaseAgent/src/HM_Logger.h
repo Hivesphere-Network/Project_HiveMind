@@ -24,6 +24,7 @@ private:
 	
 public:
 	HM_Logger();
+	HM_Logger(LOG_LEVEL log_level, const std::string& log_file);
 	~HM_Logger();
 
 	void info(const std::string& log_string);
