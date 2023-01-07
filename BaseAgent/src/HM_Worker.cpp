@@ -44,8 +44,12 @@ void HM_Worker::run_func()
 	{
 		try
 		{
-			m_logger.info("HM_Worker running");
-			throw std::runtime_error("test");
+			if(Runnable current_runnable = next()) current_runnable();
+			else
+			{
+				m_logger.warn("HM_Worker Thread has no work to do. Sleeping for 10 milliseconds");
+				std::this_thread::sleep_for(std::chrono::milliseconds(10));
+			}
 		}
 		catch(std::runtime_error& error)
 		{
@@ -67,3 +71,18 @@ void HM_Worker::abort_and_join()
 		m_thread.join();
 	}
 }
+
+Runnable HM_Worker::next()
+{
+	std::lock_guard guard(m_runnable_mutex);
+	if(m_runnable_queue.empty())
+	{
+		return nullptr;
+	}
+	Runnable runnable = m_runnable_queue.front();
+	m_runnable_queue.pop();
+
+	return runnable;
+}
+
+
