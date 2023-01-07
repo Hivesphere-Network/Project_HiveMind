@@ -1,6 +1,7 @@
 ﻿#include "HM_Worker.h"
 
-HM_Worker::HM_Worker()
+
+HM_Worker::HM_Worker() : m_dispatcher(std::shared_ptr<HM_Dispatcher>(new HM_Dispatcher(*this)))
 {
 	m_logger.info("HM_Worker starting");
 }
@@ -34,7 +35,12 @@ void HM_Worker::stop()
 bool HM_Worker::is_running() const
 {
 	return m_running.load();
-}	
+}
+
+std::shared_ptr<HM_Dispatcher> HM_Worker::get_dispatcher()
+{
+	return m_dispatcher;
+}
 
 void HM_Worker::run_func()
 {
@@ -83,6 +89,32 @@ Runnable HM_Worker::next()
 	m_runnable_queue.pop();
 
 	return runnable;
+}
+
+bool HM_Worker::post(Runnable&& a_runnable)
+{
+	if(!m_running.load())
+	{
+		m_logger.error("HM_Worker::post() - worker is not running");
+		return false;
+	}
+	try
+	{
+		std::lock_guard guard(m_runnable_mutex);
+		m_runnable_queue.push(std::move(a_runnable));
+		m_logger.info("HM_Worker::post() - posted runnable");
+		return true;
+	}
+	catch(...)
+	{
+		m_logger.error("HM_Worker::post() - failed to post runnable");
+		return false;
+	}
+}
+
+bool HM_Dispatcher::post(Runnable &&runnable)
+{
+	return m_worker.post(std::move(runnable));
 }
 
 
