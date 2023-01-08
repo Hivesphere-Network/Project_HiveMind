@@ -1,8 +1,6 @@
 ﻿#pragma once
 
-#include <ctime>
 #include <string>
-
 #include "HM_File.h"
 
 enum class LOG_LEVEL
@@ -24,10 +22,13 @@ private:
 	
 public:
 	HM_Logger();
+	HM_Logger(LOG_LEVEL log_level, const std::string& log_file);
 	~HM_Logger();
 
 	void info(const std::string& log_string);
 	void debug(const std::string& log_string);
+	void warn(const std::string& log_string);
+	void error(const std::string& log_string);
 
 private:
 	void write_log() const;
